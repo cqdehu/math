@@ -32,7 +32,6 @@ $('input[name="difficulty"]').on("change", function () {
 //set_num_of_operation
 $('#num_of_operation').on('input', function () {
     $(this).val($(this).val().replace(/\D/g, ''));
-    $(this).val($(this).val().replace(0, ''));
     num_of_operation = $('#num_of_operation').val()
 })
 
@@ -217,14 +216,18 @@ $(document).ready(function () {
 
 //start
 function start() {
-    if (!isNaN(min) && !isNaN(max) && !isNaN(num_of_operation)) {
-        $('#setting_content').hide()
-        $('#main_content').show()
-        gen_num_one()
-        gen_num_two()
-        set_result()
-        display_operation()
+    if (num_of_operation != 0) {
+
+        if (!isNaN(min) && !isNaN(max)) {
+            $('#setting_content').hide()
+            $('#main_content').show()
+            gen_num_one()
+            gen_num_two()
+            set_result()
+            display_operation()
+        }
     }
+
 }
 //
 
