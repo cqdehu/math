@@ -19,6 +19,7 @@ $('#main_content').hide()
 //set_operator
 $('input[name="operator"]').on("change", function () {
     operator = $('input[name="operator"]:checked').val();
+    system_check()
 })
 //
 
@@ -26,6 +27,7 @@ $('input[name="operator"]').on("change", function () {
 $('input[name="difficulty"]').on("change", function () {
     difficulty = $('input[name="difficulty"]:checked').val();
     set_min_max(difficulty)
+    system_check()
 });
 //
 
@@ -33,6 +35,7 @@ $('input[name="difficulty"]').on("change", function () {
 $('#num_of_operation').on('input', function () {
     $(this).val($(this).val().replace(/\D/g, ''));
     num_of_operation = $('#num_of_operation').val()
+    system_check()
 })
 
 //set_min_max
@@ -106,6 +109,14 @@ function summary() {
     $('#setting_content').show()
 }
 
+
+function system_check() {
+    if (operator == undefined || difficulty == undefined || num_of_operation == undefined || num_of_operation=="") {
+        $('#start_btn').prop('disabled', true)
+    } else {
+        $('#start_btn').prop('disabled', false)
+    }
+}
 
 //set_display
 function set_display() {
@@ -247,4 +258,10 @@ $(document).ready(function () {
         start()
     })
 })
+
+
+
+$(document).ready(function () {
+    system_check()
+});
 
