@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="font.css">
+</head>
+
+<body class="p-0 m-0 bg-dark text-light">
+  <section id="setting_content" class="p-3">
+    <section class="container mb-5 border rounded-4 p-4">
+      <div class="row row-cols-1 gap-3 mb-3">
+        <div class="col">
+          <p class="h4">Válasz műveletet:</p>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="operator" id="" value="+">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              [ + ]
+            </label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="operator" id="" value="-">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              [ - ]
+            </label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="operator" id="" value="*">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              [ * ]
+            </label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="operator" id="" value="/">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              [ / ]
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container my-5 border rounded-4 p-4">
+      <div class="row row-cols-1 gap-3">
+        <div class="col">
+          <p class="h5">Válasz nehézségi szintet:</p>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="difficulty" id="" value="Easy">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              Easy
+            </label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="difficulty" id="" value="Normal">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              Normal
+            </label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="difficulty" id="" value="Hard">
+            <label class="form-check-label h5" for="flexRadioDefault1">
+              Hard
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container my-5 border rounded-4 p-4">
+      <div class="row row-cols-1 gap-3">
+        <div class="col">
+          <p class="h5">Number of Operation:</p>
+        </div>
+        <div class="col-3">
+          <input type="text" class="form-control text-center fw-medium" id="num_of_operation" maxlength="3">
+        </div>
+      </div>
+    </section>
+    <section class="container my-5">
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-outline-light text_color fw-medium fs-3" id="start_btn">START</button>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!--//-->
+  <!--MAIN-->
+  <section id="main_content">
+    <section class="container my-3">
+      <div class="row row-cols-1 justify-content-center">
+        <div class="col text-center mb-5">
+          <p class="fw-bold p-0 m-0" id="display_operation"></p>
+        </div>
+        <div class="col text-center mb-5">
+          <p class="answer" id="answer"></p>
+        </div>
+      </div>
+    </section>
+  </section>
+  <!--//-->
+  
+  
+  
+  <!--Result-->
+  <div class="modal fade" id="result_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-dark fw-medium" id="exampleModalLabel">RESULT</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row row-cols-1">
+            <div class="col">
+              <p class="text-dark">Num of operation: <span id="num_of_operation_val"></span></p>
+            </div>
+            <div class="col">
+              <p class="text-dark">Num of good answer: <span id="good_answer_val"></span></p>
+            </div>
+            <div class="col">
+              <p class="text-dark">Num of wrong answer: <span id="wrong_answer_val"></span></p>
+            </div>
+            <!--<div class="col">
+              <p class="text-dark">Nums_one: <span id="nums_one_val"></span></p>
+            </div>
+            <div class="col">
+              <p class="text-dark">Nums_two: <span id="nums_two_val"></span></p>
+            </div>-->
+            <div class="col">
+              <p class="text-dark">Answers: <span id="answers_val"></span></p>
+            </div>
+            <div class="col">
+              <p class="text-dark">Results: <span id="results_val"></span></p>
+            </div>
+            <div class="col">
+              <p class="text-dark"><br><span id="summary"></span></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="restart_btn">Restart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--//-->
+  
+  <section id="num_pad">
+    <section class="container fixed-bottom">
+        
+      <div class="row justify-content-center">
+        <div class="col-3">
+          <div class="row gap-3">
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="7_btn">7</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="8_btn">8</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="9_btn">9</div>
+        </div>
+        
+        <div class="row gap-3">
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="4_btn">4</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="5_btn">5</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="6_btn">6</div>
+        </div>
+        
+        <div class="row gap-3">
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="1_btn">1</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="2_btn">2</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="3_btn">3</div>
+        </div>
+        
+        <div class="row gap-3">
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="clear_btn">C</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="0_btn">0</div>
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="del_btn">&lt;</div>
+        </div>
+          
+        
+        <div class="row gap-3">
+          <div class="col text-center text-dark px-3 py-2 bg-light rounded-3 mb-3" id="plus_minus_btn">±</div>
+        </div>
+        
+        <div class="row gap-3">
+          <div class="col text-center mb-5">
+            <button class="fw-medium btn btn-light border-0 text_color" id="check_btn">CHECK</button>
+          </div>
+        </div>
+      </div>  
+        
+    </section>
+  </section>
+  <script src="/math.js"></script>
+</body>
+
+</html>
